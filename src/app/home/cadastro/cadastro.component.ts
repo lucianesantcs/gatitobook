@@ -1,8 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ICadastroUsuario } from './cadastro-usuario.interface';
 import { CadastroService } from './cadastro.service';
+import { minusculoValidator } from './minusculo.validator';
+import { usuarioSenhaValidator } from './usuario-senha.validator';
+import { VerificaUsuarioService } from './verifica-usuario.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -15,21 +19,31 @@ export class CadastroComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private cadastroService: CadastroService
+    private cadastroService: CadastroService,
+    private verificaUsuarioService: VerificaUsuarioService,
+    private router: Router
   ) { }
 
   cadastrar() {
-    const novoUsuario = this.form.getRawValue() as ICadastroUsuario;
-    console.log(novoUsuario)
+    if(this.form.valid) {
+      const novoUsuario = this.form.getRawValue() as ICadastroUsuario;
+      this.cadastroService.cadastrarNovoUsuario(novoUsuario).subscribe(() => {
+        this.router.navigate(['']);
+      }), (error: any) => console.log(error);
+    }
   }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      email: [''],
-      fullName: [''],
-      userName: [''],
-      password: ['']
-    })
+      email: ['', [Validators.required, Validators.email]],
+      fullName: ['', [Validators.required, Validators.minLength(4)]],
+      userName: ['', [minusculoValidator], [this.verificaUsuarioService.usuarioExiste()]],
+      password: [''],
+      },
+      {
+        validators: [usuarioSenhaValidator],
+      }
+    );
   }
 
 }

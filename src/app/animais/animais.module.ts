@@ -9,6 +9,7 @@ import { GradePhotosComponent } from './grade-photos/grade-photos.component';
 import { DetalheComponent } from './detalhe/detalhe.component';
 import { ComentariosComponent } from './detalhe/comentarios/comentarios.component';
 import { SharedModule } from '../shared/shared.module';
+import { NovoAnimalComponent } from './novo-animal/novo-animal.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { SharedModule } from '../shared/shared.module';
     AnimalComponent,
     GradePhotosComponent,
     DetalheComponent,
-    ComentariosComponent
+    ComentariosComponent,
+    NovoAnimalComponent
   ],
   imports: [
     CommonModule,

@@ -6,8 +6,9 @@ import { ListaAnimaisComponent } from './lista-animais/lista-animais.component';
 import { AnimalComponent } from './animal/animal.component';
 import { CartaoModule } from '../componentes/cartao/cartao.module';
 import { GradePhotosComponent } from './grade-photos/grade-photos.component';
-import { RouterModule } from '@angular/router';
 import { DetalheComponent } from './detalhe/detalhe.component';
+import { ComentariosComponent } from './detalhe/comentarios/comentarios.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -15,13 +16,14 @@ import { DetalheComponent } from './detalhe/detalhe.component';
     ListaAnimaisComponent,
     AnimalComponent,
     GradePhotosComponent,
-    DetalheComponent
+    DetalheComponent,
+    ComentariosComponent
   ],
   imports: [
     CommonModule,
     AnimaisRoutingModule,
-    CartaoModule, 
-    RouterModule
+    CartaoModule,
+    SharedModule
   ]
 })
 export class AnimaisModule { }

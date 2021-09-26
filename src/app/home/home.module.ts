@@ -4,9 +4,9 @@ import { CommonModule } from '@angular/common';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { LoginComponent } from './login/login.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MensagemModule } from '../componentes/mensagem/mensagem.module';
+import { FormsModule } from '@angular/forms';
 import { CadastroComponent } from './cadastro/cadastro.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -18,9 +18,8 @@ import { CadastroComponent } from './cadastro/cadastro.component';
   imports: [
     CommonModule,
     HomeRoutingModule,
-    MensagemModule,
     FormsModule,
-    ReactiveFormsModule
+    SharedModule
   ],
   exports: [HomeComponent]
 })
